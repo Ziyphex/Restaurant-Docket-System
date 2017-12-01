@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<link href='https://fonts.googleapis.com/css?family=Berkshire Swash' rel='stylesheet'>
+		<link href='https://fonts.googleapis.com/css?family=Parisienne' rel='stylesheet'>
+	</head>
+	<style>
+		body{ background: url("https://www.wellbeing.com.au/wp-content/uploads/blogimgs/2014/08/111.jpeg") no-repeat center center fixed; 
+		 background-size: cover; }
+		#container{ width:99vw; height:85vh; }
+		#navbar{ margin-left:-1vw; width:100.5vw; height:6vh; margin-top:5%; /*background-color: green;*/ background: url("https://i.pinimg.com/originals/19/2a/8c/192a8c19663a404a33b8321d88acede5.jpg") no-repeat center center fixed; background-size: cover; }
+		#contentsBar{ width:75vw; height:79vh; float: left; overflow: auto; }
+		#direct{ width:24vw; height:79vh; float:left; background-color: yellow; }
+		#selection{ width:50%; height:8%; float:left; font-family: "Berkshire Swash"; font-size:1vw; }
+		#courseSelection{ width:50%; height:8%; float:left; font-family: "Berkshire Swash"; font-size:1vw;  }
+		#sendDocket{ width:100%; height:8%; font-family: "Parisienne"; font-size: 2vw/*135%*/; font-weight: bold; background: red; background: radial-gradient(red, yellow, green); }
+		#outerOrder{ width:100%; height:89.4%; background-color: #e8e9ea; }
+		#orderDisplayed{ margin-left: 1%; width:98%; height:92%; background-color: white; }
+		#totalPrice{ width:98%; margin-left: 1%; height:7%; background-color: #c6c6c6; text-align: center; font-size: 20px; font-family: "Berkshire Swash"; }
+
+		#starter_docket{ list-style:none; padding-left: 0pt; }
+		#main_docket{ list-style:none; padding-left: 0pt; }
+		#dessert_docket{ list-style:none; padding-left: 0pt; }
+		.starter{ float:left; font-size: 1.1vw;  font-weight:bold; }
+		.main{ float:left; font-size: 1.1vw; font-weight:bold; }
+		.dessert{ float:left; font-size: 1.1vw; font-weight:bold; }
+		.sincremental, .mincremental, .dincremental, .incremental{ width:12%; height:7%; float:right; font-family: "Berkshire Swash"; font-size:1.5vw; }
+		.spanPlace{ float:right; }
+		.sdecremental, .mdecremental, .ddecremental, .decremental{ width:12%; height:7%; float:right; font-family: "Berkshire Swash"; font-size:1.5vw; }
+		.aligning{ width:100%;float:left; }
+		#retrieved_starter_menu{ float:center; list-style:none; padding-left: 0pt; }
+		#retrieved_main_menu{ float:center; list-style:none; padding-left: 0pt; }
+		#retrieved_dessert_menu{ float:center; list-style:none; padding-left: 0pt; }
+		h3{ font-size: 1vw; font-family: "Berkshire Swash"; text-align: center; }
+		.starterItem, .mainItem, .dessertItem{ font-size:1.3vw; font-family: "Berkshire Swash"; }
+		.ourItems{ height:6%; border:1px solid black; margin-bottom: 1%; margin-left: 5%; margin-right: 5%; background-color: #e8e9ea; text-align: center; border-radius: 10%; }
+		.theDocket{ width:23.5vw; height:75vh; background-color: white; float:left; margin-right: 1%; text-align: center; overflow: auto; border:1px solid black; align-items: center; }
+		.docketHeader{ width:100%; height:10%; }
+		.Docket{ width:100%; height:85%; background-color: white; }
+
+		.logo{ width: 40%; height:100%; background-color: #e8e9ea; float:left; text-align: center; font-family: "Parisienne"; font-weight: bold; font-size: 3vw; border-radius:25%; }
+		.listen{ height:100%; width:30%; float:left; float: top; text-align: center; background: linear-gradient(-90deg, #496b4e, yellow); font-size: 1vw; border-radius:25%; font-family: "Berkshire Swash" }
+		.blank{ height:100%; width:30%; text-align: center; float:right; float: top; background: linear-gradient(to right, #496b4e, yellow); font-size: 1vw; border-radius:25%; font-family: "Berkshire Swash" }
+		 #thisThing{ font-size: 1.5vw; font-family: "Berkshire Swash"; font-weight: bold; }
+		 #currentUserLoggedIn{ float:right; margin-right: 5%; }
+	</style>
+	<body>
+		<div id="container">
+			<!-- create a docket holder navbar for use if needed -->
+			<div id="navbar">
+				<!-- <marquee id="thisThing" behavior="scroll" direction="left" scrollamount="12">WELCOME! CHOOSE YOUR TABLE NUMBER, CURRENT COURSE AND SELECT ITEMS FROM THE MENU</marquee> -->
+				<div id="currentUserLoggedIn"></div>
+			</div>
+			<!-- menu displayed within, a docket for each course -->
+			<div id="contentsBar">
+				<!-- instances of dockets for starters, mains and desserts -->
+				<div class="theDocket">
+					<div class='docketHeader'>
+						<div class="listen"><h3>STARTERS</h3></div>
+						<div class='logo'>D</div>
+						<div class='blank'><h3>STARTERS</h3></div>
+					</div>
+					<div class="Docket">
+						<ul id="retrieved_starter_menu"></ul>
+					</div>
+				</div>
+				<div class="theDocket">
+					<div class='docketHeader'>
+						<div class="listen"><h3>MAINS</h3></div>
+						<div class='logo'>D</div>
+						<div class='blank'><h3>MAINS</h3></div>
+					</div>
+					<div class="Docket">
+						<ul id="retrieved_main_menu"></ul>
+					</div>
+				</div>
+				<div class="theDocket">
+					<div class='docketHeader'>
+						<div class="listen"><h3>DESSERTS</h3></div>
+						<div class='logo'>D</div>
+						<div class='blank'><h3>DESSERTS</h3></div>
+					</div>
+					<div class="Docket">
+						<ul id="retrieved_dessert_menu"></ul>
+					</div>
+				</div>
+			</div>
+
+			<!-- show the customers order -->
+			<div id="direct">
+				<!-- select the table that is ordering. Create on demand totals -->
+				<select id="selection" placeholder="Tables"></select>
+				<!-- selection of course for current table -->
+				<select id="courseSelection" placeholder="Tables">
+					<option value="starter">Starter</option>
+					<option value="main">Main</option>
+					<option value="dessert">Dessert</option>
+				</select>
+				<!-- display items that table has ordered. Display total price of order -->
+				<div id="outerOrder">
+					<div id="orderDisplayed">
+						<ul id="starter_docket"></ul>
+						<ul id="main_docket"></ul>
+						<ul id="dessert_docket"></ul>
+					</div>
+					<div id="totalPrice" value="0.00">0.00</div>
+				</div>
+				<!-- order button -->
+				<button id="sendDocket">Order</button>
+			</div>
+		</div>
+	</body>
+
+	<!-- initialise firebase -->
+	<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+	<script>
+		// Initialize Firebase
+		var config = {
+		apiKey: "AIzaSyCdM0cDcs2qJB2llg1a-61TaaABpgzfR-A",
+		authDomain: "test-635ac.firebaseapp.com",
+		databaseURL: "https://test-635ac.firebaseio.com",
+		projectId: "test-635ac",
+		storageBucket: "test-635ac.appspot.com",
+		messagingSenderId: "88199967986"
+		};
+		firebase.initializeApp(config);
+	</script>
+
+	<!-- functional code -->
+	<script>
+		/*variables*/
+		var management = document.getElementById("management");
+
+		/*if user is logged in, show div with their name. otherwise say not logged in*/
+		firebase.auth().onAuthStateChanged(function(user) {
+		  if (user) {
+		    document.getElementById("currentUserLoggedIn").innerHTML = "Logged in: "+user.displayName;
+		    var thisLoggedUser = user.displayName;
+
+		    /* load the number of tables the restaurant has */
+		    var ref = firebase.database().ref().child(thisLoggedUser).child("tableCount");
+			ref.on("value", snap=>{
+				$("#selection").empty();
+				$("#selection").append("<option value='blah'>No Table Selected</option>");
+				for(var i = 1; i <= snap.val(); i++){
+			    	$("#selection").append("<option value='"+i+"'>Table "+i+"</option>");
+			    }
+			});
+
+			/* Load add, update and deleted menu items according to management usage */
+			var starterRef = firebase.database().ref().child(thisLoggedUser).child("menu").child("starters");
+			var mainRef = firebase.database().ref().child(thisLoggedUser).child("menu").child("mains");
+			var dessertRef = firebase.database().ref().child(thisLoggedUser).child("menu").child("desserts");
+
+			//retrieve and update starters
+			starterRef.on("child_added", snap => {
+				var item = snap.child("Name").val();
+				$("#retrieved_starter_menu").append("<div class='ourItems' id='" + item + "'><li class='starterItem'>" + item + "</li></div>");
+			});
+			starterRef.on("child_removed", snap => {
+				var removal = document.getElementById(snap.key);
+				removal.remove();
+			});
+			//retrieve and update mains
+			mainRef.on("child_added", snap => {
+				var item = snap.child("Name").val();
+				$("#retrieved_main_menu").append("<div class='ourItems' id='" + item + "'><li class='mainItem'>" + item + "</li></div>");
+			});
+			mainRef.on("child_removed", snap => {
+				var removal = document.getElementById(snap.key);
+				removal.remove();
+			});
+			//retrieve and update desserts
+			dessertRef.on("child_added", snap => {
+				var item = snap.child("Name").val();
+				$("#retrieved_dessert_menu").append("<div class='ourItems' id='" + item + "'><li class='dessertItem'>" + item + "</li></div>");
+			});
+			dessertRef.on("child_removed", snap => {
+				var removal = document.getElementById(snap.key);
+				removal.remove();
+			});
+
+			/* add starter item to the ordered items bar */
+			$(document).on('click','.starterItem', thisLoggedUser, function() {
+			    var savedStarter = this.innerHTML;
+			    var tempPrice = firebase.database().ref().child(thisLoggedUser).child("menu").child("starters").child(savedStarter);
+			    tempPrice.on("value", snap=>{
+					var valDiv = document.getElementById("totalPrice").innerText;
+					var vDiv = parseFloat(valDiv) + parseFloat(snap.child("Price").val());
+					document.getElementById("totalPrice").innerHTML = vDiv.toFixed(2);
+			    });
+			    var theDiv = document.getElementById("starter_docket");    
+			    $(theDiv).append("<span class='aligning'> <li class='starter'>"+savedStarter+"</li> <button class='sincremental' value='our"+savedStarter+"'>+</button> <span class='spanPlace' id='our"+savedStarter+"'>1</span> <button class='sdecremental' value='our"+savedStarter+"'>-</button><br><br> </span>");
+
+			});
+
+			/* add main item to the ordered items bar */
+			$(document).on('click','.mainItem',thisLoggedUser, function() {
+			    var savedMain = this.innerHTML;
+			    var tempPrice = firebase.database().ref().child(thisLoggedUser).child("menu").child("mains").child(savedMain);
+			    tempPrice.on("value", snap=>{
+					var valDiv = document.getElementById("totalPrice").innerText;
+					var vDiv = parseFloat(valDiv) + parseFloat(snap.child("Price").val());
+					document.getElementById("totalPrice").innerHTML = vDiv.toFixed(2);
+			    });
+			    var theDiv = document.getElementById("main_docket");   
+			    $(theDiv).append("<span class='aligning'> <li class='main'>"+savedMain+"</li> <button class='mincremental' value='our"+savedMain+"'>+</button> <span class='spanPlace' id='our"+savedMain+"'>1</span> <button class='mdecremental' value='our"+savedMain+"'>-</button><br><br> </span>");
+			});
+
+			/* add dessert item to the ordered items bar */
+			$(document).on('click','.dessertItem',thisLoggedUser, function() {
+			    var savedDessert = this.innerHTML;
+			    var tempPrice = firebase.database().ref().child(thisLoggedUser).child("menu").child("desserts").child(savedDessert);
+			    tempPrice.on("value", snap=>{
+					var valDiv = document.getElementById("totalPrice").innerText;
+					var vDiv = parseFloat(valDiv) + parseFloat(snap.child("Price").val());
+					document.getElementById("totalPrice").innerHTML = vDiv.toFixed(2);
+			    });
+			    var theDiv = document.getElementById("dessert_docket");   
+			    $(theDiv).append("<span class='aligning'> <li class='dessert'>"+savedDessert+"</li> <button class='dincremental' value='our"+savedDessert+"'>+</button> <span class='spanPlace' id='our"+savedDessert+"'>1</span> <button class='ddecremental' value='our"+savedDessert+"'>-</button><br><br> </span>");
+			});
+
+			/*listen in on if we increment the item count or decrement the item count*/
+			$(document).on('click','.sincremental',thisLoggedUser, function() {
+				var savedVal = this.value;
+				var destValue = document.getElementById(savedVal).innerHTML;
+				destValue++;
+				document.getElementById(savedVal).innerHTML = destValue;
+				var newSavedVal = savedVal.substring(3);
+				var tempPrice = firebase.database().ref().child(thisLoggedUser).child("menu").child("starters").child(newSavedVal)
+				 tempPrice.on("value", snap=>{
+					var valDiv = document.getElementById("totalPrice").innerText;
+					var vDiv = parseFloat(valDiv) + parseFloat(snap.child("Price").val());
+					document.getElementById("totalPrice").innerHTML = vDiv.toFixed(2);
+			    });
+			});
+			$(document).on('click','.mincremental',thisLoggedUser, function() {
+				var savedVal = this.value;
+				var destValue = document.getElementById(savedVal).innerHTML;
+				destValue++;
+				document.getElementById(savedVal).innerHTML = destValue;
+				var newSavedVal = savedVal.substring(3);
+				var tempPrice = firebase.database().ref().child(thisLoggedUser).child("menu").child("mains").child(newSavedVal)
+				 tempPrice.on("value", snap=>{
+					var valDiv = document.getElementById("totalPrice").innerText;
+					var vDiv = parseFloat(valDiv) + parseFloat(snap.child("Price").val());
+					document.getElementById("totalPrice").innerHTML = vDiv.toFixed(2);
+			    });
+			});
+			$(document).on('click','.dincremental',thisLoggedUser, function() {
+				var savedVal = this.value;
+				var destValue = document.getElementById(savedVal).innerHTML;
+				destValue++;
+				document.getElementById(savedVal).innerHTML = destValue;
+				var newSavedVal = savedVal.substring(3);
+				var tempPrice = firebase.database().ref().child(thisLoggedUser).child("menu").child("desserts").child(newSavedVal)
+				 tempPrice.on("value", snap=>{
+					var valDiv = document.getElementById("totalPrice").innerText;
+					var vDiv = parseFloat(valDiv) + parseFloat(snap.child("Price").val());
+					document.getElementById("totalPrice").innerHTML = vDiv.toFixed(2);
+			    });
+			});
+
+			/* decremental listeners */
+			$(document).on('click','.sdecremental',thisLoggedUser, function() {
+				var savedVal = this.value;
+				var destValue = document.getElementById(savedVal).innerHTML;
+				if(destValue == 1){
+					var newSavedVal = savedVal.substring(3);
+					var tempPrice = firebase.database().ref().child(thisLoggedUser).child("menu").child("starters").child(newSavedVal);
+					 tempPrice.on("value", snap=>{
+						var valDiv = document.getElementById("totalPrice").innerText;
+						var vDiv = parseFloat(valDiv) - parseFloat(snap.child("Price").val());
+						document.getElementById("totalPrice").innerHTML = vDiv.toFixed(2);
+				    });
+					document.getElementById(savedVal).parentElement.remove();
+				}
+				else{
+					var newSavedVal = savedVal.substring(3);
+					var tempPrice = firebase.database().ref().child(thisLoggedUser).child("menu").child("starters").child(newSavedVal);
+					 tempPrice.on("value", snap=>{
+						var valDiv = document.getElementById("totalPrice").innerText;
+						var vDiv = parseFloat(valDiv) - parseFloat(snap.child("Price").val());
+						document.getElementById("totalPrice").innerHTML = vDiv.toFixed(2);
+				    });
+					destValue--;
+					document.getElementById(savedVal).innerHTML = destValue;
+				}
+			});
+
+			$(document).on('click','.mdecremental',thisLoggedUser, function() {
+			var savedVal = this.value;
+			var destValue = document.getElementById(savedVal).innerHTML;
+			if(destValue == 1){
+				var newSavedVal = savedVal.substring(3);
+				var tempPrice = firebase.database().ref().child(thisLoggedUser).child("menu").child("mains").child(newSavedVal);
+				 tempPrice.on("value", snap=>{
+					var valDiv = document.getElementById("totalPrice").innerText;
+					var vDiv = parseFloat(valDiv) - parseFloat(snap.child("Price").val());
+					document.getElementById("totalPrice").innerHTML = vDiv.toFixed(2);
+			    });
+				document.getElementById(savedVal).parentElement.remove();
+			}
+			else{
+				var newSavedVal = savedVal.substring(3);
+				var tempPrice = firebase.database().ref().child(thisLoggedUser).child("menu").child("mains").child(newSavedVal);
+				 tempPrice.on("value", snap=>{
+					var valDiv = document.getElementById("totalPrice").innerText;
+					var vDiv = parseFloat(valDiv) - parseFloat(snap.child("Price").val());
+					document.getElementById("totalPrice").innerHTML = vDiv.toFixed(2);
+			    });
+				destValue--;
+				document.getElementById(savedVal).innerHTML = destValue;
+			}
+		});
+
+		$(document).on('click','.ddecremental',thisLoggedUser, function() {
+			var savedVal = this.value;
+			var destValue = document.getElementById(savedVal).innerHTML;
+			if(destValue == 1){
+				var newSavedVal = savedVal.substring(3);
+				var tempPrice = firebase.database().ref().child(thisLoggedUser).child("menu").child("desserts").child(newSavedVal);
+				 tempPrice.on("value", snap=>{
+					var valDiv = document.getElementById("totalPrice").innerText;
+					var vDiv = parseFloat(valDiv) - parseFloat(snap.child("Price").val());
+					document.getElementById("totalPrice").innerHTML = vDiv.toFixed(2);
+			    });
+				document.getElementById(savedVal).parentElement.remove();
+			}
+			else{
+				var newSavedVal = savedVal.substring(3);
+				var tempPrice = firebase.database().ref().child(thisLoggedUser).child("menu").child("desserts").child(newSavedVal);
+				 tempPrice.on("value", snap=>{
+					var valDiv = document.getElementById("totalPrice").innerText;
+					var vDiv = parseFloat(valDiv) - parseFloat(snap.child("Price").val());
+					document.getElementById("totalPrice").innerHTML = vDiv.toFixed(2);
+			    });
+				destValue--;
+				document.getElementById(savedVal).innerHTML = destValue;
+			}
+		});
+
+		/*listen in on the place order button*/
+		$("#sendDocket").click(function(){
+			var course = document.getElementById("courseSelection").value;
+
+			if(course == "starter"){
+				var scurrTable = firebase.database().ref().child(thisLoggedUser).child("tableCount");
+				scurrTable.on("value", snap=>{
+					var slen = document.getElementById("starter_docket").getElementsByTagName("li").length;
+					var firstNode = document.getElementById("starter_docket");
+					var tableNumber = document.getElementById("selection").value;
+					console.log(slen);
+					for(var i = 0; i < slen; i++){
+						var item = firstNode.getElementsByTagName("LI")[i].innerHTML;
+						var quant = firstNode.getElementsByClassName("spanPlace")[i].innerHTML;
+						if(parseInt(tableNumber) <= parseInt(snap.val())){
+							var addRootRef = firebase.database().ref().child(thisLoggedUser).child("dockets").child("starter").child(tableNumber); //.child("mains"); .child("desserts");
+							var sendingInfo = addRootRef.child(i);
+							sendingInfo.set({
+								Name: item,
+								Quantity: quant
+							});
+						}	
+					}
+					firstNode.innerHTML = "";
+				});
+			}
+
+			else if(course == "main"){
+				var mcurrTable = firebase.database().ref().child(thisLoggedUser).child("tableCount");
+				mcurrTable.on("value", snap=>{
+					var mlen = document.getElementById("main_docket").getElementsByTagName("li").length;
+					var secondNode = document.getElementById("main_docket");
+					var tableNumber = document.getElementById("selection").value;
+					for(var i = 0; i < mlen; i++){
+						var item = secondNode.getElementsByTagName("LI")[i].innerHTML;
+						var quant = secondNode.getElementsByClassName("spanPlace")[i].innerHTML;
+						if(parseInt(tableNumber) <= parseInt(snap.val())){
+							var addRootRef = firebase.database().ref().child(thisLoggedUser).child("dockets").child(course).child(tableNumber); //.child("mains"); .child("desserts");
+							var sendingInfo = addRootRef.child(i);
+							sendingInfo.set({
+								Name: item,
+								Quantity: quant
+							});
+						}
+					}
+					secondNode.innerHTML = "";
+				});
+			}
+
+			else{
+				var dcurrTable = firebase.database().ref().child(thisLoggedUser).child("tableCount");
+				dcurrTable.on("value", snap=>{		
+					var dlen = document.getElementById("dessert_docket").getElementsByTagName("li").length;
+					var thirdNode = document.getElementById("dessert_docket");
+					var tableNumber = document.getElementById("selection").value;
+					for(var i = 0; i < dlen; i++){
+						var item = thirdNode.getElementsByTagName("LI")[i].innerHTML;
+						var quant = thirdNode.getElementsByClassName("spanPlace")[i].innerHTML;
+						if(parseInt(tableNumber) <= parseInt(snap.val())){
+							var addRootRef = firebase.database().ref().child(thisLoggedUser).child("dockets").child(course).child(tableNumber); //.child("mains"); .child("desserts");
+							var sendingInfo = addRootRef.child(i);
+							sendingInfo.set({
+								Name: item,
+								Quantity: quant
+							});
+						}
+					}
+					thirdNode.innerHTML = "";
+				});
+			}
+			document.getElementById("totalPrice").innerHTML = "0.00";
+		});
+
+
+		/* notifications for if order is ready */
+		var starterReady = firebase.database().ref().child(thisLoggedUser).child("dockets").child("starter");
+		starterReady.on("child_removed", snap=>{
+			alert("Starters for Table " + snap.key + " Are Ready");
+		});
+		var mainReady = firebase.database().ref().child(thisLoggedUser).child("dockets").child("main");
+		mainReady.on("child_removed", snap=>{
+			alert("Mains for Table " + snap.key + " Are Ready");
+		});
+		var dessertReady = firebase.database().ref().child(thisLoggedUser).child("dockets").child("dessert");
+		dessertReady.on("child_removed", snap=>{
+			alert("Desserts for Table " + snap.key + " Are Ready");
+		});
+
+		  } else {
+		    console.log("No Log");
+		  }
+		});
+
+	</script>
+</html>
