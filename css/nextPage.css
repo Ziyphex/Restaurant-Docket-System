@@ -1,0 +1,19 @@
+body { background: url("imgs/background.jpg")  no-repeat center center fixed; background-size: cover; text-align:center; }
+#navBar{ margin-left:-1vw; width:100.5vw; height:6vh; margin-top:5%; background: url("imgs/navbarTexture.jpg") no-repeat center center fixed; background-size: cover; }
+#container{  width:99vw; height:85vh; }
+#contents{ width:38%; height:79vh; float: left; }
+#docket{ width:24%; height:73vh; background-color: white; float:left; border:1px solid black; }
+#docketHeader{ width:100%; height:10%; }
+#logo{ width: 40%; height:100%; background-color: #e8e9ea; float:left; text-align: center; font-family: "Parisienne"; font-weight: bold; font-size: 3vw; border-radius:25%; }
+#listen{ height:100%; width:30%; float:left; float: top; text-align: center; background: linear-gradient(-90deg, #496b4e, yellow); font-size: 1vw; border-radius:25%; font-family: "Berkshire Swash" }
+#blank{ height:100%; width:30%; text-align: center; float:right; float: top; background: linear-gradient(to right, #496b4e, yellow); font-size: 1vw; border-radius:25%; font-family: "Berkshire Swash" }
+#choices{ width:100%; height:63%; border-bottom: 1px solid black; margin-top: 17%; }
+.ourItems{ width:60%; height:16%; border:1px solid black; margin-bottom: 1%; margin-left: 5%; margin-right: 5%; background-color: #e8e9ea; text-align: center; border-radius: 10%; margin-top: 5%;}
+#management, #waiting, #chef, #logout{ font-size:1.3vw; font-family: "Berkshire Swash"; float:center; list-style:none; padding-left: 0pt; padding-top: 0pt;  }
+.time{ height:6%; border:1px solid black; margin-bottom: 1%; margin-left: 5%; margin-right: 5%; background: red; background: radial-gradient(red, yellow, green); text-align: center; border-radius: 10%; margin-top: 5%; float: bottom; }
+#clock{ font-size:1.1vw; font-family: "Berkshire Swash"; float:center; list-style:none; padding-left: 0pt; padding-top: 8pt; }
+#thisThing{ font-family: "Spectral SC"; font-weight: bold; color:white; font-size:1.3vw; padding-top: 1%;  }
+#currentUserLoggedIn{ float:right; margin-right: 5%; margin-top: -2%; font-size: 1.1vw; font-family: "Berkshire Swash"; }
+#messageOfInfo{ width:50vw; height:100%; background-color: #aaaaaa; margin-left: 25vw; }
+#themessage{ width:98%; height:85%; background-color: black; margin-left: 1%; }
+#management:hover, #waiting:hover, #chef:hover, #logout:hover{ color:red; cursor:pointer; }

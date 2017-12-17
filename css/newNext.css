@@ -1,0 +1,19 @@
+body{ background: url("imgs/background.jpg") no-repeat center center fixed; 
+		 background-size: cover; }
+#container{ width:99vw; height:85vh; /*background-color:red;*/ }
+#placeOfWork{ margin-left:-1vw; width:100.5vw; height:6vh; margin-top:5%; /*background-color: green;*/ background: url("imgs/navbarTexture.jpg") no-repeat center center fixed; background-size: cover; }
+#space{ width:25%; height:100%; float:left; }
+.optionBtns{ height:100%; width:15%; font-family: "Parisienne"; font-size: /*26px*/1.4vw;}
+#workStarters{ width:99vw; height:78vh; /*background-color:yellow;*/ overflow: auto;}
+.itemListing{ font-size: /*24px*/1.3vw; }
+.TheSButton, .TheMButton, .TheDButton{ width:50%; height:10%; font-family: "Berkshire Swash"; border-radius: 25%; font-weight: bold; font-size: /*20px*/1.3vw; }
+.btn, .mbtn, .dbtn{ width:50%; height:10%; font-family: "Berkshire Swash"; border-radius: 25%; font-weight: bold; font-size: /*20px*/1.3vw; }
+
+.theDocket{ /*width:18vw; height:46vh;*/ width:19vw; height:77vh; margin-right: 5px; margin-bottom:2px; margin-top: 3px; float:left; border: 1px solid black; background-color: white; }
+.docketHeader{ width:100%; height:10%; background-color: white; }
+.tNum{ height:100%; width:30%; float:left; float: top; text-align: center; background: linear-gradient(-90deg, #496b4e, yellow); font-size: .8vw; border-radius:25%; font-family: "Berkshire Swash" }
+.logo{ width: 40%; height:100%; background-color: #e8e9ea; float:left; text-align: center; font-family: "Parisienne"; font-weight: bold; font-size: 3vw; border-radius:25%; }
+#demo, #mdemo, #ddemo{ height:100%; width:30%; text-align: center; float:right; float: top; background: linear-gradient(to right, #496b4e, yellow); font-size: .8vw; border-radius:25%; font-family: "Berkshire Swash" }
+.docketContents{ width:100%; height:80%; background-color: white; text-align: center; text-decoration: underline; overflow: auto; }
+#currentUserLoggedIn{ float:right; margin-right: 5%; margin-top: 1%; font-size: 1.1vw; font-family: "Berkshire Swash"; }
+#s:hover, #m:hover, #d:hover{ color:red; background-color: #aaaaaa; }
