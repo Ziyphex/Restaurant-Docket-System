@@ -1,0 +1,32 @@
+body{ background: url("imgs/background.jpg") no-repeat center center fixed; background-size: cover; }
+ #container{ width:99vw; height:85vh;}
+ #navbar{ margin-left:-1vw; width:100.5vw; height:6vh; margin-top:5%; background: url("imgs/navbarTexture.jpg") no-repeat center center fixed; background-size: cover; }
+#contentsBar{ width:99vw; height:78vh; float: left; }
+#currentUser, #newUser{ width:23.5vw; height:75vh; background-color: white; float:left; margin-right: 1%; text-align: center; overflow: auto; border:1px solid black; align-items: center; font-family: "Parisienne"; font-size: 1.3vw;  }
+#contents{ width:38%; height:79vh; float: left; }
+#docketHeader{ width:100%; height:10%; }
+#logo{ width: 40%; height:100%; background-color: #e8e9ea; float:left; text-align: center; font-family: "Parisienne"; font-weight: bold; font-size: 3vw; border-radius:25%; }
+#listen1, #listen2{ height:100%; width:30%; float:left; float: top; text-align: center; background: linear-gradient(-90deg, #496b4e, yellow); font-size: 1vw; border-radius:25%; font-family: "Berkshire Swash"; text-decoration: underline; font-weight: bold; }
+#blank1, #blank2{ height:100%; width:30%; text-align: center; float:right; float: top;  background: linear-gradient(to right, #496b4e , yellow); font-size: 1vw; border-radius:25%; font-family: "Berkshire Swash" }
+.allInputs{ width:60%; height:6%; margin-top: 5%; border-radius: 15%; text-align: center; }
+.theButtons{ margin-top: 29%; width:100%; height:7%; float:left; border-radius: 15%; background: red; background: radial-gradient(red, yellow, green); font-size: 1.3vw; font-family: "Berkshire Swash"; font-weight: bold;  }
+.theButton2{ margin-top: 20%; width:100%; height:7%; float:left; border-radius: 15%; background: red; background: radial-gradient(red, yellow, green); font-size: 1.3vw; font-family: "Berkshire Swash"; font-weight: bold;  }
+
+ #header{ width:100%; height:15%;  color:green; font-size: 4vw; font-family:"Parisienne"; text-align:center; text-decoration: underline; font-weight: bold; }
+
+ #thisThing{ font-family: "Spectral SC"; font-weight: bold; color:white; font-size:1.3vw; padding-top: 1%;  }
+
+ #uname{ margin-bottom:1%; width:50%; }
+ #company{ margin-bottom:1%; width:50%; }
+ #username{ margin-bottom:1%; width:50%; }
+ #pass{ margin-bottom:1%; width:50%; }
+ #password{ margin-bottom:1%; width:50%; }
+ #in{ margin-bottom:1%; }
+ #input{ margin-bottom:1%; }
+ #up{ margin-bottom:1%; }
+ #output{ margin-bottom:1%; }
+ #usernameContainer{ float:right; margin-right: 5%; margin-top: -2%; font-size: 1.1vw; font-family: "Berkshire Swash"; cursor: pointer; }
+ #usernameContainer :hover{ color: red; }
+ #forgotPassword{ color:#c95e3a; }
+ #messageOfInfo{ width:50vw; height:100%; background-color: #aaaaaa; margin-left: 25vw; }
+ #themessage{ width:98%; height:85%; background-color: black; margin-left: 1%; }
